@@ -1,3 +1,7 @@
+package com.bpi.oopGproject;
+
+import java.util.*;
+
 /*
  * 1. Upon application start, ask user to create one User
  * 2. Create one Library object
@@ -36,22 +40,64 @@
  * */
 
 public class LibraryApplication {
-	
+
 	private User user;
 	private Library library;
-	
-	// Main Application Logic, call this in your Main.java
-	public void start() {
-		// initial user creation
-		this.user = new User();
 
-		// initial library creation
+	public void start() {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Welcome to Library!");
+        System.out.println();
+        System.out.print("Enter User name: ");
+		String name = sc.nextLine();
+		this.user = new User(name, 1);
+
 		this.library = new Library();
-		
-		// add code here
-		
+
+		library.addBook(new Book(12, "Goodnight Moon", "Margaret Wise Brown"), 0);
+		library.addBook(new Book(232, "Charlotte’s Web", "E. B. White"), 1);
+		library.addBook(new Book(342, "Junie B. Jones series", "Barbara Park"), 2);
+		library.addBook(new Book(443, "Amelia Bedelia series", "Peggy Parish"), 3);
+		library.addBook(new Book(565, "The Gruffalo", "Julia Donaldson"), 4);
+
+		while (true) {
+			System.out.println("\nOptions:");
+			System.out.println("[1] Display All Books");
+			System.out.println("[2] Display Available Books");
+			System.out.println("[3] Display All Borrowed Books");
+			System.out.println("[4] Borrow Book");
+			System.out.println("[5] Return Book");
+			System.out.println("[6] Exit");
+
+			int choice = sc.nextInt();
+			switch (choice) {
+			case 1:
+				library.displayAllBooks();
+				break;
+			case 2:
+				library.displayAvailableBooks();
+				break;
+			case 3:
+				library.displayBorrowedBooks();
+				break;
+			case 4:
+				System.out.print("Enter Book ID to borrow: ");
+				int bookId = sc.nextInt();
+				library.borrowBook(bookId, user);
+				break;
+			case 5:
+				System.out.print("Enter Loan ID to return: ");
+				int loanId = sc.nextInt();
+				library.returnBook(loanId);
+				break;
+			case 6:
+				System.out.println("Exiting...");
+				sc.close();
+				return;
+			default:
+				System.out.println("Invalid choice");
+			}
+		}
 	}
-	
-	// add code here
-	
 }
