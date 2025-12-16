@@ -35,7 +35,7 @@
  * - Stops the program  
  * */
 
-public class LibraryApplication {
+public class LibraryApplication extends Utilities {
 	
 	private User user;
 	private Library library;
@@ -49,6 +49,30 @@ public class LibraryApplication {
 		this.library = new Library();
 		
 		// add code here
+		
+		Boolean exit = false;
+		
+		while (!exit) {
+			int choice = Utilities.DisplayMenu();
+			
+			switch(choice) {
+				case 1: library.DislayBooks(ALL_BOOKS);
+						break;
+				case 2: library.DislayBooks(ALL_AVAILABLE_BOOKS);
+						break;
+				case 3: library.DislayBooks(ALL_BORROWED_BOOKS);
+						break;
+				case 4: library.LoanBook(this.user);
+						break;
+				case 5: library.ReturnBook(this.user);
+						break;
+				case 6: exit = true;
+						System.out.println("Bye");
+						break;
+						
+			}
+		
+		}
 		
 	}
 	
