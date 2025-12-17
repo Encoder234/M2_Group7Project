@@ -1,6 +1,14 @@
+package M2.Group_Project;
+
 public class User {
 		
-	private String name;
-	// author Robbie 12/12/2025
+	private String name = "Mayday";
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getName() {
+		return name;
+	}
 	
 }

@@ -35,7 +35,11 @@
  * - Stops the program  
  * */
 
-public class LibraryApplication {
+package M2.Group_Project;
+
+import java.util.Scanner;
+
+public class LibraryApplication{
 	
 	private User user;
 	private Library library;
@@ -48,11 +52,62 @@ public class LibraryApplication {
 		// initial library creation
 		this.library = new Library();
 		
-		// add code here
-		// author Robbie 12/12/2025
+		boolean exitApp = false;
 		
+		Scanner choice = new Scanner(System.in);
+		// add code here
+		while(!exitApp) {
+			displayMenu();
+			int input = choice.nextInt();
+			switch(input) {
+				case 1:
+					library.showBooks();
+					break;
+				case 2:
+					library.showAvailable();
+					break;
+				case 3:
+					library.showLoaned();
+					break;
+				case 4:
+					library.showAvailable();
+					library.borrowBook();
+					break;
+				case 5:
+					library.showLoaned();
+				    library.returnBook();
+					break;
+				case 6:
+					exitApp = true;
+					System.out.println("You are now exiting the application. Thank you!");
+					System.out.println("");
+					break;
+				default:
+					System.out.println("");
+					System.out.println("Invalid input. Please try again.");
+					System.out.println("");
+					break;
+			}	 
+		}
+		choice.close();		
 	}
 	
-	// add code here
+	public void displayMenu() {
+		System.out.println("========================================");
+		System.out.println("         Welcome to ABC Library         ");
+		System.out.println("========================================");
+		System.out.println("");
+		System.out.println("     [1] Display All Books");
+		System.out.println("     [2] Display Available Books");
+		System.out.println("     [3] Display All Borrowed Books");
+		System.out.println("     [4] Borrow Book");
+		System.out.println("     [5] Return Book");
+		System.out.println("     [6] Exit");
+		System.out.println("");
+		System.out.println("========================================");
+		System.out.println("========================================");
+		System.out.println("");
+		System.out.print("Choice: ");
+	}
 	
 }

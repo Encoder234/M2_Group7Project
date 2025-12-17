@@ -1,4 +1,4 @@
-
+package M2.Group_Project;
 
 public class Main {
 	
@@ -6,6 +6,5 @@ public class Main {
 	  
 		LibraryApplication libraryApplication = new LibraryApplication();
 		libraryApplication.start();
-		// author Robbie 12/12/2025
 	}
 }
