@@ -70,11 +70,11 @@ public class LibraryApplication extends Utilities {
 						System.out.println("Bye");
 						break;
 						
-			}
+			}// switch
 		
-		}
+		}// while
 		
-	}
+	}// start()
 	
 	// add code here
 	

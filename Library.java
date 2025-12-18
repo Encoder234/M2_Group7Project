@@ -58,7 +58,8 @@ public class Library extends Utilities {
 											}
 											break;								
 											
-				case ALL_AVAILABLE_BOOKS: 	for (int i = 0; i < MAX_NUMBER_OF_BOOKS; i++) { 
+				case ALL_AVAILABLE_BOOKS: 	
+											for (int i = 0; i < MAX_NUMBER_OF_BOOKS; i++) { 
 												if (this.books[i].getAvailabilityStatus()) 
 													System.out.printf("%-5s %-20s %-25s %-20b %-20s %-20s%n", this.books[i].getId(), this.books[i].getTitle(), this.books[i].getAuthor(), this.books[i].getAvailabilityStatus(),"","");
 											}
@@ -122,13 +123,14 @@ public class Library extends Utilities {
 	
 	Boolean ReturnBookID(int id, User user) {		
 		boolean found = false;
-		for (int x = 0; x < loanCounter ; x++  ) {
-			
+		
+		//Utilities.PrintLoans(this.loans);
+
+		//for (int x = 0; x < loanCounter ; x++  ) {
+		for (int x = 0; x < MAX_NUMBER_OF_BOOKS ; x++  ) {	
 			if (this.loans[x] != null) {
-				if (this.loans[x].getUser().getName() == user.getName()) {
-					
-					if (this.loans[x].getBook().getId() == id) {
-						
+				if (this.loans[x].getUser().getName() == user.getName()) {				
+					if (this.loans[x].getBook().getId() == id) {				
 						for (int i = 0; i < MAX_NUMBER_OF_BOOKS; i++) { 
 							if (this.loans[x].getBook().getId() == this.books[i].getId()) { 
 								this.books[i].setAvailabilityStatus(true);
@@ -137,18 +139,15 @@ public class Library extends Utilities {
 								found = true;
 								loanCounter-= 1;
 								break;
-							}
-						}
+							} //if
+						}// for
 						
-					}		
-				}
-			} //if
-			
+					} //if		
+				}//if
 				
-		}
-	
-		//Utilities.PrintLoans(this.loans);
-		
+			} //if			
+		}//for
+					
 		return found;
 	} //ReturnBookID()
 	
