@@ -33,25 +33,79 @@
  * 
  *   [6] Exit
  * - Stops the program  
+ * 
+ * 
+ * How to use Array.....
+ 
+// Creates an array with fixed length 5..
+Book[] bookArray = new Book[5]; 
+ 
+// Sample initialization
+bookArray[0] = new Book("Clean Code");
+bookArray[1] = new Book("Effective Java");
+// ... and so on up to index 4
+ 
+// Sample code for accessing an item in the array.
+System.out.println(bookArray[0].getTitle() ); // Works after initialization
  * */
-
+import java.util.Scanner;
 public class LibraryApplication {
-	
-	private User user;
-	private Library library;
-	
+	private Scanner sc = new Scanner(System.in);
+
 	// Main Application Logic, call this in your Main.java
 	public void start() {
-		// initial user creation
-		this.user = new User();
+		//5 Default books
+		Book[] books = {
+				new Book(1,"1984", "George Orwell"),
+				new Book(2,"To Kill a Mockingbird", "Harper Lee"),
+				new Book(3,"The Great Gatsby", "F. Scott Fitzgerald"),
+				new Book(4,"Moby Dick", "Herman Melville"),
+				new Book(5,"Pride and Prejudice", "Jane Austen")
+		};
 
-		// initial library creation
-		this.library = new Library();
-		
-		// add code here
-		
+		//Create user
+		System.out.println("Enter user name:");
+		User user = new User(sc.nextLine()); //Set the new user
+		System.out.println(user);
+
+		//Set the library with defined books
+		Library library = new Library(books);
+		//Menu
+		int choice;
+		do{
+			System.out.println("[1] Display All Books\n"
+					+ "[2] Display Available Books\n"
+					+ "[3] Display All Borrowed Books\n"
+					+ "[4] Borrow Book\n"
+					+ "[5] Return Book\n"
+					+ "[6] Exit");
+			System.out.print("Enter choice: ");
+			choice = sc.nextInt();
+
+			//SWITCH CASE
+			switch (choice) {
+				case 1:
+					library.displayAllBook();
+					break;
+				case 2:
+					library.displayAvailableBooks();
+					break;
+				case 3:
+					library.displayBorrowedBooks();
+					break;
+				case 4:
+					System.out.print("Enter book id : ");
+					library.borrowBook(sc.nextInt());
+					break;
+				case 5:{
+					System.out.print("Enter book id : ");
+					library.returnBook(sc.nextInt());
+					break;
+				}
+				case 6: System.out.println("Goodbye!");
+					break;
+				default: System.out.println("Invalid choice.");
+			} // END OF SWITCH CASE
+		} while(choice != 6); //END OF DO-WHILE LOOP
 	}
-	
-	// add code here
-	
 }
