@@ -38,15 +38,21 @@ import java.util.Scanner;
 
 public class LibraryApplication {
 	
-	private User user;
+	private String name;
+    private int id;
 	private Library library;
+	private User currentUser;
 	
 	
 	// Main Application Logic, call this in your Main.java
 	public void start() {
+		
+		this.id = 1;
+        this.name = "akoto";
+        this.currentUser = new User(this.id, this.name);
 		Scanner sc = new Scanner(System.in);
 		// initial user creation
-		this.user = new User(0, null);
+		//this.user = new User(0, null);
 
 		// initial library creation
 		this.library = new Library();
@@ -57,38 +63,44 @@ public class LibraryApplication {
         do {
             printMenu();
             choice = sc.nextLine();
-            //choice = readIntSafe(sc); // no exceptions
 
             if (Integer.parseInt(choice) == 1) {
                 System.out.println("Option 1");
-                library.displayAllBooks();
-
+                library.displayMinimal("");
             } else if (Integer.parseInt(choice) == 2) {
             	System.out.println("Option 2");
             	library.displayAvailableBooks();
-
             } else if (Integer.parseInt(choice) == 3) {
             	System.out.println("Option 3");
             	library.displayBorrowedBooks();
-
             } else if (Integer.parseInt(choice) == 4) {
             	System.out.println("Option 4");
-            	library.borrowBook(this.user, sc);
-
+            	library.borrowBook(this.currentUser, sc);
             } else if (Integer.parseInt(choice) == 5) {
                 // Return Book
             	System.out.println("Option 5");
             	library.returnBook(sc);
-            }
-              else if (Integer.parseInt(choice) == 6) {
+            } else if (Integer.parseInt(choice) == 6) {
+                // Add Book
+            	System.out.println("Option 6");
+            	library.addBook(sc);
+            } else if (Integer.parseInt(choice) == 7) {
+                // Remove Book
+            	System.out.println("Option 7");
+            	library.removeBook(sc);
+            } else if (Integer.parseInt(choice) == 8) {
+                // Update Book
+            	System.out.println("Option 8");
+            	library.updateBook(sc);
+            } else if (Integer.parseInt(choice) == 0) {
             	  System.out.println("Exiting Application");
             	  break;
             } else {
-                System.out.println("Invalid choice. Please select 1-6.");
+                System.out.println("Invalid choice. Please select 1-8.");
             }
 
             System.out.println(); // spacing
-        } while (Integer.parseInt(choice) != 6);
+        } while (Integer.parseInt(choice) != 0);
 
         sc.close();
 
@@ -102,7 +114,10 @@ public class LibraryApplication {
 	        System.out.println(" [3] Display All Borrowed Books");
 	        System.out.println(" [4] Borrow Book");
 	        System.out.println(" [5] Return Book");
-	        System.out.println(" [6] Exit");
+	        System.out.println(" [6] Add Book");
+	        System.out.println(" [7] Remove Book");
+	        System.out.println(" [8] Update Book");
+	        System.out.println(" [0] Exit");
 	        System.out.print("Your choice: ");
 	    }
 	

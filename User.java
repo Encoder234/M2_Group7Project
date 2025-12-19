@@ -20,6 +20,9 @@ public class User {
     	}
 
 
-
+    @Override
+    public String toString() {
+        return this.name; // Now whenever you print a User object, it shows the name
+    }
 	
 }
